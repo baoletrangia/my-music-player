@@ -1,0 +1,19 @@
+.container{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+#url{
+  margin: 0 12px;
+  padding: 1rem;
+}
