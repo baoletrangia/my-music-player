@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicQueueService } from '../music-queue.service';
 import { Music } from '../music-list';
+import { ConstantPool } from '@angular/compiler';
 
 @Component({
   selector: 'app-player',
@@ -21,8 +22,9 @@ export class PlayerComponent implements OnInit {
     let inputUrl = input.value;
     input.value = '';
     this.musicService.addSong(inputUrl);
-    this.musicService.play();
-    console.log(this.musicService.getQueue());
+    console.log(this.musicService.getQueue())
+    if(!this.musicService.isPlaying())
+      this.musicService.play();
   }
 
 

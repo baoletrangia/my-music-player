@@ -9,7 +9,8 @@ import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 export class MusicQueueService {
   queue: Music[]=[];
   stop$?: Observable<any>;
-  currentSong: Music|undefined;
+  currentSong?: Music;
+  videoTag?: HTMLVideoElement;
   constructor() {
   }
 
@@ -24,28 +25,41 @@ export class MusicQueueService {
   }
 
   nextSong(): void{
-    let videoTag = document.getElementsByTagName('video');
-    this.stop$ = fromEvent(videoTag, 'ended');
-    console.log(this.stop$);
-    this.stop$.subscribe(() => {
-      console.log('sth stop');
+    this.videoTag = document.getElementById('video') as HTMLVideoElement;
+    this.stop$ = fromEvent(this.videoTag!, 'ended');
+    var subscription = this.stop$.subscribe({
+      next: (x) => {
+        console.log('ended');
+        if(!this.queueIsEmpty())
+          this.play();
+      }
     })
+
   }
 
   getQueue(): Music[]{
     return this.queue;
   }
 
+  isPlaying(): any{
+    return this.videoTag!.src;
+  }
+
+  queueIsEmpty(): any{
+    return (this.queue.length == 0) ? true : false;
+  }
+
+  cleanPlayer(): void{
+    this.videoTag!.src = '';
+  }
+
   play(): void{
     let app = document.getElementById('main');
-    let videoTag = document.createElement('video');
-    videoTag.setAttribute('controls', 'true');
-    videoTag.setAttribute('autoplay', 'true');
     this.currentSong = this.queue.shift();
     if (typeof (this.currentSong) == undefined)
-      videoTag.src = '';
+      this.videoTag!.src = '';
     else
-      videoTag.src = this.currentSong!.url;
-    app?.appendChild(videoTag);
+      this.videoTag!.src = this.currentSong!.url;
+    this.videoTag?.play();
   }
 }
