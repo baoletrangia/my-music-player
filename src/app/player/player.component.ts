@@ -10,11 +10,13 @@ import { ConstantPool } from '@angular/compiler';
 })
 export class PlayerComponent implements OnInit {
   currentSong!: Music;
+  currentQueue?: Music[]
 
   constructor(private musicService: MusicQueueService) {}
 
   ngOnInit(): void {
     this.musicService.nextSong();
+    this.currentQueue = this.musicService.getQueue();
   }
 
   addSong(): void{
@@ -22,9 +24,6 @@ export class PlayerComponent implements OnInit {
     let inputUrl = input.value;
     input.value = '';
     this.musicService.addSong(inputUrl);
-    console.log(this.musicService.getQueue())
-    if(!this.musicService.isPlaying())
-      this.musicService.play();
   }
 
 

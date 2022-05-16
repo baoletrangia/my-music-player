@@ -1,0 +1,13 @@
+<div class="container flex-column">
+  <h2>Your Playlist</h2>
+  <div class="list">
+    <div class="list-item" *ngFor="let playlist of playlists">
+      <h3>{{playlist.playListTitle}}</h3>
+      <div class="right">
+        <button (click)="playPlaylist(playlist)">Play</button>
+        <button>Edit</button>
+        <button>Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,7 @@ h2, h3 {
 }
 body {
   margin: 2em;
+  text-align: center;
 }
 body, input[type="text"], button {
   color: #333;
@@ -29,10 +30,10 @@ button {
   cursor: pointer;
   color: black;
   font-size: 1.2rem;
-  padding: 1rem;
-  margin-right: 1rem;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: .5rem;
+  margin-top: .5rem;
 }
 button:hover {
   background-color: black;
@@ -43,3 +44,22 @@ button:disabled {
   color: #aaa;
   cursor: auto;
 }
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.flex-row{
+  flex-direction: row;
+}
+
+
+

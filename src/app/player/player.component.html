@@ -1,9 +1,18 @@
 <div id="main" class="container flex-column">
-  <h1>Music Player</h1>
   <div class="container flex-row">
     <label for="url">Enter your Youtube link: </label>
     <input id="url" type="text" name="url">
     <button (click)="addSong()">Add</button>
   </div>
-  <video id="video" autoplay controls width="500"></video>
+  <div class="player flex-row">
+    <video id="video" autoplay controls width="500"></video>
+    <div class="player-right">
+      <h3>Queue</h3>
+      <div class="queue">
+        <div class="song" *ngFor="let song of currentQueue">
+          {{song.title}}
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

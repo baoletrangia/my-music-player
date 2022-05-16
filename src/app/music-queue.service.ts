@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Music } from './music-list';
+import { Music, Playlist } from './music-list';
 import { fromEvent, Observable } from 'rxjs';
 import { CursorError } from '@angular/compiler/src/ml_parser/lexer';
 
@@ -22,6 +22,10 @@ export class MusicQueueService {
     var titleExtracted = rExp.exec(url)![0];
     let song = { title: titleExtracted, url: url||'' };
     this.queue.push(song);
+    if (!this.isPlaying()) {
+      this.play();
+    }
+
   }
 
   nextSong(): void{
@@ -29,8 +33,8 @@ export class MusicQueueService {
     this.stop$ = fromEvent(this.videoTag!, 'ended');
     var subscription = this.stop$.subscribe({
       next: (x) => {
-        console.log('ended');
-        if(!this.queueIsEmpty())
+        this.cleanPlayer();
+        if (!this.queueIsEmpty())
           this.play();
       }
     })
@@ -42,7 +46,8 @@ export class MusicQueueService {
   }
 
   isPlaying(): any{
-    return this.videoTag!.src;
+    this.videoTag = document.getElementById('video') as HTMLVideoElement;
+    return !!this.videoTag!.src;
   }
 
   queueIsEmpty(): any{
@@ -50,16 +55,23 @@ export class MusicQueueService {
   }
 
   cleanPlayer(): void{
-    this.videoTag!.src = '';
+    this.videoTag = document.getElementById('video') as HTMLVideoElement;
+    this.videoTag.removeAttribute('src');
   }
 
   play(): void{
-    let app = document.getElementById('main');
+    this.videoTag = document.getElementById('video') as HTMLVideoElement;
     this.currentSong = this.queue.shift();
-    if (typeof (this.currentSong) == undefined)
-      this.videoTag!.src = '';
-    else
-      this.videoTag!.src = this.currentSong!.url;
+    this.videoTag.src = this.currentSong!.url;
     this.videoTag?.play();
+  }
+
+  playPlaylist(playlist:Playlist): void{
+    playlist.playlists.forEach((e) => {
+      this.queue.push(e);
+    })
+    if (!this.isPlaying()) {
+      this.play();
+    }
   }
 }
