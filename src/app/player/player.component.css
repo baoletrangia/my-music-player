@@ -1,5 +1,4 @@
-
-.player{
+.player {
   display: flex;
   align-items: center;
   padding: 1rem;
@@ -9,7 +8,7 @@
   justify-content: center;
 }
 
-.player-right{
+.player-right {
   margin-left: 32px;
   display: flex;
   flex-direction: column;
@@ -17,7 +16,14 @@
   height: 100%;
 }
 
-.queue{
+.player-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.queue {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
@@ -27,12 +33,12 @@
   overflow-y: scroll;
 }
 
-.song{
+.song {
   width: 100%;
   padding: 16px;
   border-bottom: 1px solid #ddd;
 }
-#url{
+#url {
   margin: 0 12px;
   padding: 1rem;
 }

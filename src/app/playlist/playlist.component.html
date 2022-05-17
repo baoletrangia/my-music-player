@@ -2,11 +2,13 @@
   <h2>Your Playlist</h2>
   <div class="list">
     <div class="list-item" *ngFor="let playlist of playlists">
-      <h3>{{playlist.playListTitle}}</h3>
+      <h3>{{ playlist.playlistTitle }}</h3>
       <div class="right">
-        <button (click)="playPlaylist(playlist)">Play</button>
-        <button>Edit</button>
-        <button>Delete</button>
+        <button (click)="addPlaylist(playlist)">Add to queue</button>
+        <button routerLink="/playlists/{{ playlist.playlistTitle }}">
+          Edit
+        </button>
+        <button (click)="deletePlaylist(playlist)">Delete</button>
       </div>
     </div>
   </div>
