@@ -19,6 +19,18 @@ export class PlaylistDetailsComponent implements OnInit {
 
   getPlaylistSongs(): void {
     this.playlistTitle = this.route.snapshot.paramMap.get('playlistTitle')!;
-    this.songs = this.playlists.find(playlist => playlist.playlistTitle==this.playlistTitle)?.songs
+    this.songs = this.playlists.find(
+      (playlist) => playlist.playlistTitle == this.playlistTitle
+    )?.songs;
+  }
+
+  deleteSong(songName: string): void {
+    let index = this.songs!.findIndex((song) => song.title == songName);
+    this.songs!.splice(index, 1);
+  }
+
+  addSong(): void {
+    let newSong: Song = { title: '', url: '' };
+    this.songs!.push(newSong);
   }
 }

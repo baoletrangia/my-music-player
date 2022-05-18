@@ -14,12 +14,17 @@ export class PlaylistComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  addPlaylist(playlist: Playlist): void {
+  addPlaylistToQueue(playlist: Playlist): void {
     this.musicService.addPlaylist(playlist);
   }
 
   deletePlaylist(playlist: Playlist): void {
     let index = this.playlists.indexOf(playlist);
     this.playlists.splice(index, 1);
+  }
+
+  addNewPlaylist(): void {
+    let newPlaylist: Playlist = { playlistTitle: '', songs: [] };
+    this.playlists.push(newPlaylist);
   }
 }

@@ -1,6 +1,19 @@
-<h2>{{playlistTitle}}</h2>
-<div class="list">
-<div class="list-item" *ngFor="let song of songs">
-  {{song.title}}
+<h2>{{ playlistTitle }}</h2>
+<div class="song-list">
+  <div class="list-item" *ngFor="let song of songs">
+    <div class="left flex-column">
+      <div class="container">
+        <label for="song-name">Name: </label>
+        <input type="text" [(ngModel)]="song.title" name="song-name" placeholder="Name">
+      </div>
+      <div class="container">
+        <label for="url">Url: </label>
+        <input type="text" [(ngModel)]="song.url" name="url" placeholder="URL">
+      </div>
+    </div>
+    <div class="right">
+      <button (click)="deleteSong(song.title)">Delete</button>
+    </div>
+  </div>
 </div>
-</div>
+<button (click)="addSong()">Add new song</button>

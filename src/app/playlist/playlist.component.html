@@ -2,9 +2,9 @@
   <h2>Your Playlist</h2>
   <div class="list">
     <div class="list-item" *ngFor="let playlist of playlists">
-      <h3>{{ playlist.playlistTitle }}</h3>
+      <input type="text" [(ngModel)]="playlist.playlistTitle" name="pTitle" placeholder="Playlist Title">
       <div class="right">
-        <button (click)="addPlaylist(playlist)">Add to queue</button>
+        <button (click)="addPlaylistToQueue(playlist)">Add to queue</button>
         <button routerLink="/playlists/{{ playlist.playlistTitle }}">
           Edit
         </button>
@@ -12,4 +12,5 @@
       </div>
     </div>
   </div>
+  <button (click)="addNewPlaylist()">Add new playlist</button>
 </div>

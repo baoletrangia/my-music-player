@@ -1,0 +1,8 @@
+.list{
+  height: 500px;
+  overflow-y: scroll;
+}
+
+input{
+  font-size: 20px;
+}

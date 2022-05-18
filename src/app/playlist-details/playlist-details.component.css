@@ -1,0 +1,31 @@
+.song-list{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  overflow-y: scroll;
+  height: 500px;
+}
+
+.url{
+  margin-top: 12px;
+}
+
+.left{
+  display: flex;
+  align-items: flex-start;
+  padding: 8px;
+  flex: 1;
+}
+
+.left>.container{
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+label{
+  margin-right: 16px;
+}
+
+input[type="text"]{
+  flex: 1;
+}
